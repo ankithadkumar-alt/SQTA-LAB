@@ -97,7 +97,33 @@
       ]
     },
     {
-      "name": "5. TC-CART-04: Exceed Stock Limit (Boundary)",
+      "name": "5. TC-CART-03: Negative Quantity Check (BVA)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": 1,\n  \"quantity\": -1\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/cart/add", "host": ["{{baseUrl}}"], "path": ["api", "cart", "add"] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 400 Bad Request', () => pm.response.to.have.status(400));",
+              "pm.test('Negative quantity is rejected', () => {",
+              "    pm.expect(pm.response.json().error).to.include('cannot be negative');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. TC-CART-04: Exceed Stock Limit (Boundary)",
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -123,7 +149,7 @@
       ]
     },
     {
-      "name": "6. TC-CART-01: Valid Add to Cart",
+      "name": "7. TC-CART-01: Valid Add to Cart",
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -144,7 +170,7 @@
       ]
     },
     {
-      "name": "7. TC-DISC-01: Apply 20% Coupon",
+      "name": "8. TC-DISC-01: Apply 20% Coupon",
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -165,7 +191,7 @@
       ]
     },
     {
-      "name": "8. TC-CALC-01: Mathematical Calculation Verification",
+      "name": "9. TC-CALC-01: Mathematical Calculation Verification",
       "request": {
         "method": "GET",
         "header": [],
@@ -189,7 +215,7 @@
       ]
     },
     {
-      "name": "9. TC-CHK-02: Checkout Unauthorized (Security)",
+      "name": "10. TC-CHK-02: Checkout Unauthorized (Security)",
       "request": {
         "method": "POST",
         "header": [],
@@ -206,7 +232,7 @@
       ]
     },
     {
-      "name": "10. TC-CHK-03: Checkout Authorized (End-to-End)",
+      "name": "11. TC-CHK-03: Checkout Authorized (End-to-End)",
       "request": {
         "method": "POST",
         "header": [

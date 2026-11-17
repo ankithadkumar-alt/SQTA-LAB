@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "newman run ecommerce.postman_collection.json --env-var \"baseUrl=http://localhost:5000\" --reporters cli,htmlextra --reporter-htmlextra-export ./ExecutionReport.html"
   },
   "keywords": [],
   "author": "",

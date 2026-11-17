@@ -1,7 +1,7 @@
 # Comparative Tool Exploration & Automated API Testing
-> **Course:** Software Testing & Quality Assurance (SQTA)  
-> **Tool Stack:** Postman v11, Newman CLI, `newman-reporter-htmlextra`  
-> **SUT Stack:** Node.js, Express.js RESTful API  
+> **Course:** Software Testing & Quality Assurance (SQTA)
+> **Tool Stack:** Postman v11, Newman CLI, `newman-reporter-htmlextra`
+> **SUT Stack:** Node.js, Express.js RESTful API
 
 ---
 
@@ -84,12 +84,7 @@ For Product Item **"Wireless Mouse" (Product ID: 1, In-Stock: 10)**:
 ---
 
 ## 📊 Execution Metrics (Newman Run)
-- **Total Requests:** 10
-- **Total Assertions:** 16
-- **Pass Rate:** 100% (16/16 Passed, 0 Failed, 0 Skipped)
-- **Total Execution Duration:** 1007 ms (~1.0s)
-- **Average Response Latency:** 8 ms
-- **Automated Report:** Generated via `newman-reporter-htmlextra` as an interactive HTML dashboard.
+- Latest run: 11 requests and 18 assertions; all passed. Running `npm test` generates `ExecutionReport.html`.
 
 ---
 
@@ -98,7 +93,6 @@ For Product Item **"Wireless Mouse" (Product ID: 1, In-Stock: 10)**:
 ### 1. Install Dependencies
 ```bash
 npm install
-npm install -g newman newman-reporter-htmlextra
 ```
 
 ### 2. Start the Backend API (SUT)
@@ -111,10 +105,7 @@ In a second terminal:
 ```bash
 npm test
 ```
-*Or directly via Newman:*
-```bash
-npx newman run ecommerce.postman_collection.json --env-var "baseUrl=http://localhost:5000" -r "cli,htmlextra" --reporter-htmlextra-export ./ExecutionReport.html
-```
+The API must be running in the first terminal. The test command runs the collection and generates the HTML report.
 
 ---
 
