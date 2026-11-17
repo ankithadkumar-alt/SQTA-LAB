@@ -1,0 +1,17 @@
+$kind: http-request
+name: "7. TC-DISC-01: Apply 20% Coupon"
+url: "{{baseUrl}}/api/cart/coupon"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "code": "SAVE20"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Status code is 200 OK', () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 7000

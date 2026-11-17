@@ -1,0 +1,20 @@
+$kind: http-request
+name: "10. TC-CHK-03: Checkout Authorized (End-to-End)"
+url: "{{baseUrl}}/api/checkout"
+method: POST
+headers:
+  Authorization: Bearer {{authToken}}
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201 Created', () => pm.response.to.have.status(201));
+      pm.test('Response Time is under 300ms SLA', () => {
+          pm.expect(pm.response.responseTime).to.be.below(300);
+      });
+      pm.test('Schema validation: order object is correct', () => {
+          const json = pm.response.json();
+          pm.expect(json.order).to.have.property('orderId');
+          pm.expect(json.order.status).to.eql('CONFIRMED');
+      });
+    language: text/javascript
+order: 10000

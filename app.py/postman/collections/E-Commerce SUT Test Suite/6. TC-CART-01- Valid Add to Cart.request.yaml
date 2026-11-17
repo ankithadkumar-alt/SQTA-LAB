@@ -1,0 +1,18 @@
+$kind: http-request
+name: "6. TC-CART-01: Valid Add to Cart"
+url: "{{baseUrl}}/api/cart/add"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "productId": 1,
+      "quantity": 2
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Status code is 200 OK', () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 6000

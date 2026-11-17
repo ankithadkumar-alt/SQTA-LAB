@@ -1,0 +1,9 @@
+$kind: http-request
+name: "9. TC-CHK-02: Checkout Unauthorized (Security)"
+url: "{{baseUrl}}/api/checkout"
+method: POST
+scripts:
+  - type: afterResponse
+    code: pm.test('Status code is 401 Unauthorized', () => pm.response.to.have.status(401));
+    language: text/javascript
+order: 9000

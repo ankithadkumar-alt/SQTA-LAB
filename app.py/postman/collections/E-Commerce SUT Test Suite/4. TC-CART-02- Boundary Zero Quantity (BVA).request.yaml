@@ -1,0 +1,18 @@
+$kind: http-request
+name: "4. TC-CART-02: Boundary Zero Quantity (BVA)"
+url: "{{baseUrl}}/api/cart/add"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "productId": 1,
+      "quantity": 0
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Status code is 422 Unprocessable Entity', () => pm.response.to.have.status(422));
+    language: text/javascript
+order: 4000

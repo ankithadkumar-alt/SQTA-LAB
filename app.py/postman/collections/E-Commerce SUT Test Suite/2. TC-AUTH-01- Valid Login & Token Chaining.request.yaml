@@ -1,0 +1,24 @@
+$kind: http-request
+name: "2. TC-AUTH-01: Valid Login & Token Chaining"
+url: "{{baseUrl}}/api/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "student@test.com",
+      "password": "Password123"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200 OK', () => pm.response.to.have.status(200));
+      pm.test('Response contains Bearer token', () => {
+          const json = pm.response.json();
+          pm.expect(json).to.have.property('token');
+          pm.environment.set('authToken', json.token);
+      });
+    language: text/javascript
+order: 2000
