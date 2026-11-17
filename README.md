@@ -108,14 +108,3 @@ npm test
 The API must be running in the first terminal. The test command runs the collection and generates the HTML report.
 
 ---
-
-## 👥 Team Work Division
-- **Student A (Lead Tool Architect & Framework Specialist - 50%):**
-  - Collection variable architecture and dynamic Bearer token chaining.
-  - Newman CLI test runner pipeline setup and `htmlextra` reporting configuration.
-  - Non-functional SLA assertions and latency benchmark evaluation.
-
-- **Student B (Lead Test Designer & SUT Engineer - 50%):**
-  - Backend API architecture and specification in Node.js/Express (`server.js`).
-  - Formal Test Specification Matrix design (BVA, Equivalence Partitioning, Negative).
-  - Chai assertion logic implementation and Defect Discovery root cause analysis.
